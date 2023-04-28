@@ -1,80 +1,77 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
-import logo from "../../imgs/logovioleta.png";
+import logo from "../../imgs/logo 211.png";
+import { Navbar, Nav, NavDropdown, Container, NavLink } from "react-bootstrap";
 import "./Navbar.css";
-const Navbar = () => {
+import NavbarToggle from "react-bootstrap/esm/NavbarToggle";
+
+const NavBar = () => {
+  const history = useHistory();
+  const location = useLocation();
+
   return (
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navegador ">
-      <div class="container-fluid">
-        <Link style={{ textDecoration: "none" }} to="/">
-          <img
-            src={logo}
-            class="rounded border border-light float-start"
-            style={{ width: "70px" }}
-            alt="..."
-          />
+    <Navbar expand="lg" className="navegador ">
+      <Navbar.Brand>
+        <Link to="/">
+          <img src={logo} class="rounded-circle logo" alt="..." />
         </Link>
-        <button
-          class="navbar-toggler "
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarDark"
-          aria-controls="navbarDark"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse collapse " id="navbarDark">
-          <ul class="navbar-nav me-auto mb-2 mb-xl-0 text-center">
-            <li class="nav-item ">
-              <Link style={{ textDecoration: "none" }} to="/">
-                <span className="nav-link mt-1 route-hover ">
-                  <i class="bi bi-house"></i>
-                  Home
-                </span>
-              </Link>
-            </li>
-            <li class="nav-item ">
-              <Link style={{ textDecoration: "none" }} to="/projects">
-                <span className="nav-link mt-1 route-hover ">
-                  <i class="bi bi-projector-fill"></i>
-                  Projects
-                </span>
-              </Link>
-            </li>
-            <li class="nav-item">
-              <Link style={{ textDecoration: "none" }} to="/about">
-                <span className="nav-link mt-1 route-hover">
-                  <i class="bi bi-people-fill"></i>
-                  About me
-                </span>
-              </Link>
-            </li>
-            <li class="nav-item ">
-              <Link style={{ textDecoration: "none" }} to="/Contact">
-                <span className="nav-link mt-1 route-hover ">
-                  <i class="bi bi-house-fill " />
-                  Contact
-                </span>
-              </Link>
-            </li>
-          </ul>
-          {/* <form class="d-flex">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-light" type="submit">
-              Search
-            </button>
-          </form> */}
-        </div>
-      </div>
-    </nav>
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" className="m-3">
+        <i class="bi bi-three-dots-vertical h1 text-light"></i>
+      </Navbar.Toggle>
+
+      <Navbar.Collapse id="responsive-navbar-nav ">
+        <Nav className="mx-auto h2 ">
+          <Link to="/" className="nav-link ">
+            <span
+              class={
+                location.pathname === "/"
+                  ? "nav-link route-flag route-hover text-white active"
+                  : "nav-link route-hover text-white opcion"
+              }
+            >
+              <i class="bi bi-house-door-fill"></i> Home
+            </span>
+          </Link>
+          <Link to="/resume" className="nav-link ">
+            <span
+              class={
+                location.pathname === "/resume"
+                  ? "nav-link route-flag route-hover text-white active"
+                  : "nav-link  route-hover text-white opcion"
+              }
+            >
+              <i class="bi bi-file-person-fill"></i> Resume
+            </span>
+          </Link>
+
+          <Link to="/projects" className="nav-link ">
+            <span
+              class={
+                location.pathname === "/projects"
+                  ? "nav-link  route-flag route-hover text-white active"
+                  : "nav-link route-hover text-white opcion"
+              }
+            >
+              <i class="bi bi-file-earmark-code-fill"></i> Projects
+            </span>
+          </Link>
+          <Link to="/contact" className="nav-link ">
+            <span
+              class={
+                location.pathname === "/contact"
+                  ? "nav-link  route-flag route-hover text-white active"
+                  : "nav-link  route-hover text-white opcion"
+              }
+            >
+              <i class="bi bi-person-rolodex"></i> Contact
+            </span>
+          </Link>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
   );
 };
 
-export default Navbar;
+export default NavBar;
